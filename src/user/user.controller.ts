@@ -8,9 +8,6 @@ import {
   Delete,
   Res,
   HttpStatus,
-  UseInterceptors,
-  CacheInterceptor,
-  CacheTTL,
 } from '@nestjs/common';
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
@@ -37,8 +34,6 @@ export class UserController {
     }
   }
 
-  @UseInterceptors(CacheInterceptor)
-  @CacheTTL(15)
   @Get()
   async findAll(@Res() response) {
     try {
@@ -52,8 +47,6 @@ export class UserController {
     }
   }
 
-  @UseInterceptors(CacheInterceptor)
-  @CacheTTL(15)
   @Get(':id')
   async findOne(@Res() response, @Param('id') id: string) {
     try {

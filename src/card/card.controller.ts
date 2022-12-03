@@ -11,6 +11,7 @@ import {
   UseInterceptors,
   CacheInterceptor,
   CacheTTL,
+  CacheKey,
 } from '@nestjs/common';
 import { CardService } from './card.service';
 import { CreateCardDto } from './dto/create-card.dto';
@@ -38,6 +39,7 @@ export class CardController {
   }
 
   @UseInterceptors(CacheInterceptor)
+  @CacheKey('Cards')
   @CacheTTL(15)
   @Get()
   async findAll(@Res() response) {
@@ -53,6 +55,7 @@ export class CardController {
   }
 
   @UseInterceptors(CacheInterceptor)
+  @CacheKey('custom-key')
   @CacheTTL(15)
   @Get(':id')
   async findOne(@Res() response, @Param('id') id: string) {
