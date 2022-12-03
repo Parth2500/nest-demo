@@ -1,13 +1,9 @@
-import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { Schema, Prop, SchemaFactory } from '@nestjs/mongoose';
 import { HydratedDocument } from 'mongoose';
-
-export type UserDocument = HydratedDocument<User>;
+import { IUser } from './user.entity';
 
 @Schema()
-export class User {
-  @Prop()
-  id: number;
-
+export class SUser implements IUser {
   @Prop()
   name: string;
 
@@ -18,4 +14,6 @@ export class User {
   cardType: string;
 }
 
-export const UserSchema = SchemaFactory.createForClass(User);
+export type UserDocument = HydratedDocument<SUser>;
+
+export const UserSchema = SchemaFactory.createForClass(SUser);
