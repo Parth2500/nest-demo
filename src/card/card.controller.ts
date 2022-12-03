@@ -38,9 +38,6 @@ export class CardController {
     }
   }
 
-  @UseInterceptors(CacheInterceptor)
-  @CacheKey('Cards')
-  @CacheTTL(15)
   @Get()
   async findAll(@Res() response) {
     try {
@@ -54,9 +51,6 @@ export class CardController {
     }
   }
 
-  @UseInterceptors(CacheInterceptor)
-  @CacheKey('custom-key')
-  @CacheTTL(15)
   @Get(':id')
   async findOne(@Res() response, @Param('id') id: string) {
     try {
